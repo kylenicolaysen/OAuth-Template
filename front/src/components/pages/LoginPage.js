@@ -1,28 +1,29 @@
-import React from 'react'
+import React, { useState } from 'react'
 import { GoogleLogin } from '@react-oauth/google'
 import jwt_decode from 'jwt-decode'
-import { Navigate, useNavigate } from 'react-router-dom'
+import { redirect, useNavigate, useNavigation } from 'react-router-dom'
 
-class LoginPage extends React.Component {
-  onLogin = ({ credential }) => {
-    let navigate = useNavigate()
+export default () => {
+  const navigate = useNavigate()
+  const [ loggedIn, setLoggedIn ] = useState(false)
+  const onLogin = ({ credential }) => {
     const decoded = jwt_decode(credential)
-    console.log(decoded.sub)
+    console.log('Signed In: ', decoded)
+    setLoggedIn(true)
     navigate('/dashboard')
   }
-
-  render() {
-    return (
-      <div>
-        <h1>Login</h1>
-        <GoogleLogin
-          onSuccess={this.onLogin}
-          onError={(cR) => {
-            console.log("FAILED", cR)
-          }}
-        />
-      </div>
-    )
-  }
+  return (
+    <div>
+      <h1>Login</h1>
+      <GoogleLogin
+        onSuccess={onLogin}
+        onError={(cR) => {
+          console.log("FAILED", cR)
+        }}
+      />
+    </div>
+  )
 }
-export default LoginPage
+
+      // return redirect('/dashboard')
+
