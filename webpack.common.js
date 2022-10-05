@@ -1,5 +1,7 @@
 const path = require('path')
-  
+const webpack = require('webpack')
+const dotenv = require('dotenv').config({ path: __dirname + '/.env' })
+
 console.log(`Path:: ${path.join(__dirname, 'front/public')}`)
 
 module.exports = {
@@ -14,5 +16,10 @@ module.exports = {
       test: /\.js$/,
       exclude: /node_modules/
     }]
-  }
+  },
+  plugins: [
+    new webpack.DefinePlugin({
+      'process.env': JSON.stringify(dotenv.parsed),
+    })
+  ]
 }

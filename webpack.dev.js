@@ -8,5 +8,5 @@ module.exports = merge(common, {
   devServer: {
     static: path.join(__dirname, "front/public"),
     historyApiFallback: true
-  }
+  },
 })

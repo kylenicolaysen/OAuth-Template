@@ -8,7 +8,7 @@ import { GoogleOAuthProvider } from '@react-oauth/google'
 const store = configureStore()
 
 const jsx = (
-    <GoogleOAuthProvider clientId="218915995641-pmaencqvs4uqqkhnkngutkvorbec80eh">
+    <GoogleOAuthProvider clientId={process.env.CLIENTID}>
       <Provider store={store}>
         <AppRouter />
       </Provider>

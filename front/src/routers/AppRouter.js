@@ -4,18 +4,6 @@ import LoginPage from '../components/pages/LoginPage'
 import DashboardPage from '../components/pages/DashboardPage'
 import NotFoundPage from '../components/pages/NotFoundPage'
 
-// const AppSRouter = () => (
-//   <BrowserRouter>
-//     <div>
-//       <Switch>
-//         <Route path='/' component={LoginPage} exact />
-//         <Route path='/dashboard' component={DashboardPage} />
-//         <Route component={NotFoundPage} />
-//       </Switch>
-//     </div>
-//   </BrowserRouter>
-// )
-
 const AppRouter = () => (
   <BrowserRouter>
     <Routes>
