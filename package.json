@@ -4,19 +4,21 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "build-dev": "webpack --config webpack.dev.js",
-    "ds": "webpack serve --open --config webpack.dev.js",
-    "serve": "node server/server.js"
+    "back-dev": "nodemon back/src/index.js",
+    "front-dev": "webpack serve --open --config webpack.dev.js"
   },
   "author": "",
   "license": "ISC",
   "dependencies": {
     "@react-oauth/google": "^0.2.8",
     "babel-loader": "^8.2.5",
+    "cors": "^2.8.5",
     "dotenv": "^16.0.3",
-    "express": "^4.18.1",
+    "express": "^4.18.2",
     "gapi-script": "^1.2.0",
+    "google-auth-library": "^8.5.2",
     "jwt-decode": "^3.1.2",
+    "nodemon": "^2.0.20",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
     "react-redux": "^8.0.2",

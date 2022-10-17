@@ -7,6 +7,13 @@ module.exports = merge(common, {
   devtool: "inline-cheap-module-source-map",
   devServer: {
     static: path.join(__dirname, "front/public"),
-    historyApiFallback: true
+    historyApiFallback: true,
+    proxy: {
+      '/api': {
+        target: 'http://localhost:3000',
+        pathRewrite: { '^api': '' },
+        changeOrigin: true
+      }
+    }
   },
 })
