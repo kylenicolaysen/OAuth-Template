@@ -23,7 +23,9 @@ app.post('api/auth/google', async (req, res) => {
   res.json(tokens);
 });
 
-app.get('/test', async (req, res) => {
+app.get('api/test', async (req, res) => {
+
+  console.log('HIT!')
   res.json('xXXXXXXXXX')
 })
 

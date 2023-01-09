@@ -2,7 +2,7 @@ import React, { useEffect } from 'react'
 import { gapi, loadAuth2 } from 'gapi-script';
 import { useNavigate } from 'react-router-dom';
 import { connect } from 'react-redux'
-import { isNotAuthenticated } from '../../actions/authentication';
+import { isAuthenticated, isNotAuthenticated } from '../../actions/authentication';
 
 const DashboardPage = (props) => {
   const navigate = useNavigate()
@@ -15,30 +15,27 @@ const DashboardPage = (props) => {
         props.dispatch(isNotAuthenticated())
       } else {
         console.log(auth2.currentUser.get())
+        props.dispatch(isAuthenticated('token123'))
       }
     }
     setAuth2();
-    if(!props.isAuthenticated) {
-      navigate('/login')
-    }
   }, []);
-
-  useEffect(() => {
-
-  }, [ props.isAuthenticated ])
 
   const onLogout = () => {
     props.dispatch(isNotAuthenticated())
   }
 
-  const onTestClick = async () => {
-    const response = await fetch('/api/test', {
-      method: 'GET'
-    })
-    if (response) {
-      console.log(`Status: ${response.status}`)
-      console.log(`Body: ${response.body}`)
-    }
+  // const onTestClick = async () => {
+  //   const response = await fetch('http://localhost:3000/api/test', {
+  //     method: 'GET'
+  //   })
+  //   if (response) {
+  //     console.log(`Status: ${response.status}`)
+  //     console.log(`Body: ${response.body}`)
+  //   }
+  // }
+  const onTestClick = () => {
+    window.alert('asdf')
   }
 
   return (
@@ -46,18 +43,29 @@ const DashboardPage = (props) => {
       <h1>You're In!</h1>
       <button
         onClick={onTestClick}
-        style={{ backgroundColor:"red", color: "white"}}
-      >RED BUTTON</button>
+        style={{ backgroundColor:"red", color: "white" }}
+      >
+        RED BUTTON
+      </button>
+      <button
+        onClick={() => (navigate('/profile'))}
+        style={{ backgroundColor:"yellow", color: "purple" }}
+      >
+        PROFILE
+      </button>
       <button
         onClick={onLogout}
-      >Logout</button>
+      >
+        LOGOUT
+      </button>
     </div>
   )  
 }
 
 const mapStateToProps = (state) => {
   return { 
-    isAuthenticated: state.authentication.isAuthenticated
+    isAuthenticated: state.authentication.isAuthenticated,
+    isNotAuthenticated: state.authentication.isNotAuthenticated
   }
 }
 
